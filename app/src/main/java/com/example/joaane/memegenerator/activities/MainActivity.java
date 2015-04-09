@@ -1,12 +1,17 @@
-package com.example.joaane.memegenerator;
+package com.example.joaane.memegenerator.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.joaane.memegenerator.R;
+import com.example.joaane.memegenerator.fragments.BottomSectionFragment;
+import com.example.joaane.memegenerator.fragments.TopSectionFragment;
+import com.example.joaane.memegenerator.fragments.listeners.TopSectionFragmentListener;
 
-public class MainActivity extends Activity {
+
+public class MainActivity extends Activity implements TopSectionFragmentListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +40,14 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //gets called when button in topsectionfragment is clicked
+    @Override
+    public void createMeme(String top, String bottom) {
+
+        //TopSectionFragment topSectionFragment = (TopSectionFragment) getFragmentManager().findFragmentById(R.id.topFragment);
+        BottomSectionFragment bottomSectionFragment = (BottomSectionFragment) getFragmentManager().findFragmentById(R.id.bottomFragment);
+        bottomSectionFragment.setMemeText(top, bottom);
     }
 }
